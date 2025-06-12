@@ -69,5 +69,4 @@ export const getTotalCartPrice = (state) =>
 export const getCurrentQuantityById = (pizzaId) => (state) =>
   state.cart.cart.find((item) => item.pizzaId === pizzaId)?.quantity || 0;
 
-const tung = "tung11s";
 //reselect thư viện giúp giảm số lần tính toán lại giá trị khi state không thay đổi
