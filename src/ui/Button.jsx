@@ -11,6 +11,7 @@ export default function Button({ children, disabled, to, type, onClick }) {
     secondary:
       base +
       " px-4 py-3 sm:px-6 sm:py-4 bg-stone-200 text-stone-600 hover:bg-stone-300 focus:bg-stone-300 focus:ring-stone-300",
+    round: base + " px-2.5 py-1 text-sm md:px-3.5 md:py-2",
   };
 
   if (to) {
@@ -40,6 +41,6 @@ Button.propTypes = {
   children: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
   to: PropTypes.string,
-  type: PropTypes.oneOf(["primary", "small", "secondary"]),
+  type: PropTypes.oneOf(["primary", "small", "secondary", "round"]).isRequired,
   onClick: PropTypes.func,
 };

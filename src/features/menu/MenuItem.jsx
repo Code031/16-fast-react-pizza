@@ -5,11 +5,13 @@ import PropTypes from "prop-types";
 import { addItem } from "../cart/cartSlice";
 import DeleteItem from "../cart/DeleteItem";
 import { getCurrentQuantityById } from "../cart/cartSlice";
+import UpdateItemQuantity from "../cart/UpdateItemQuantity";
 
 function MenuItem({ pizza }) {
   const dispatch = useDispatch();
   const { id, name, unitPrice, ingredients, soldOut, imageUrl } = pizza;
   const currentQuantity = useSelector(getCurrentQuantityById(id));
+  const isInCart = currentQuantity > 0;
 
   function handleAddToCart() {
     const newItem = {
@@ -43,9 +45,17 @@ function MenuItem({ pizza }) {
             </p>
           )}
 
-          <DeleteItem pizzaId={id} />
+          {isInCart && (
+            <div className="flex items-center gap-2 sm:gap-8">
+              <UpdateItemQuantity
+                pizzaId={id}
+                currentQuantity={currentQuantity}
+              />
+              <DeleteItem pizzaId={id} />
+            </div>
+          )}
 
-          {!soldOut && (
+          {!soldOut && !isInCart && (
             <Button type="small" onClick={handleAddToCart}>
               Add to cart
             </Button>

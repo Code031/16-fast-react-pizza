@@ -30,7 +30,7 @@ const cartSlice = createSlice({
       const item = state.cart.find((item) => item.pizzaId === action.payload);
       if (item) {
         item.quantity += 1;
-        item.totalPrice = item.quantity * item.unitPice;
+        item.totalPrice = item.quantity * item.unitPrice;
       }
     },
     decreaseItemQuantity(state, action) {
@@ -38,7 +38,7 @@ const cartSlice = createSlice({
       const item = state.cart.find((item) => item.pizzaId === action.payload);
       if (item && item.quantity > 1) {
         item.quantity -= 1;
-        item.totalPrice = item.quantity * item.unitPice;
+        item.totalPrice = item.quantity * item.unitPrice;
       }
     },
     clearCart(state) {
@@ -67,6 +67,6 @@ export const getTotalCartPrice = (state) =>
   state.cart.cart.reduce((total, item) => total + item.totalPrice, 0);
 
 export const getCurrentQuantityById = (pizzaId) => (state) =>
-  state.cart.cart.find((item) => item.pizzaId === pizzaId)?.quantity || 0;
+  state.cart.cart.find((item) => item.pizzaId === pizzaId)?.quantity ?? 0;
 
 //reselect thư viện giúp giảm số lần tính toán lại giá trị khi state không thay đổi
